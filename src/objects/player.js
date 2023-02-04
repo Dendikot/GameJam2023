@@ -1,7 +1,5 @@
 import * as Phaser from 'phaser';
 
-const Graphics = Phaser.GameObjects.Graphics;
-const Scene = Phaser.Scene;
 const Circle = Phaser.Geom.Circle;
 const Point = Phaser.Geom.Point;
 
@@ -20,14 +18,15 @@ export class Player {
 
     hasMoved = false;
 
-    constructor(scene, x, y) {
+    constructor(scene, x, y, sprite) {
+
         this.speed = customConfig.playerSpeed;
-        this.graphics = scene.add.graphics();
-        this.graphics.lineStyle(1, customConfig.playerColor);
+        this.graphics = sprite;
+        /*this.graphics.lineStyle(1, customConfig.playerColor);
         this.graphics.fillStyle(customConfig.playerColor);
         this.graphics.x = x - customConfig.playerRadius;
         this.graphics.y = y - customConfig.playerRadius;
-        this.graphics.fillCircleShape(new Circle(customConfig.playerRadius, customConfig.playerRadius, customConfig.playerRadius));
+        this.graphics.fillCircleShape(new Circle(customConfig.playerRadius, customConfig.playerRadius, customConfig.playerRadius));*/
 
         this.previousPoint = this.point();
         this.previousOnExisting = true;
@@ -49,7 +48,7 @@ export class Player {
         if (! this.previousPoint.equals(this.point())) {
             this.hasMoved = true;
         }
-
+        
         this.previousPoint = this.point();
 
         const newPosition = this.getMove(cursors);

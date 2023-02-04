@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser';
+import spidy from "../assets/spidy.png"
 
 import {Player} from "../objects/player";
 import {Grid} from "../objects/grid";
@@ -7,8 +8,10 @@ import {Debug} from "../objects/debug";
 import {config, customConfig} from "../objects/config";
 import {Levels} from "../objects/levels";
 
+
 class QixScene extends Phaser.Scene {
     player;
+    playerSprite;
     grid;
     info;
     cursors;
@@ -23,12 +26,16 @@ class QixScene extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('player', spidy);
     }
 
     create() {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.grid = new Grid(this);
-        this.player = new Player(this, customConfig.margin, customConfig.margin);
+        this.playerSprite = this.add.sprite(0,50, 'player');
+        this.playerSprite.setScale(0.2, 0.2);
+        this.player = new Player(this, customConfig.margin, customConfig.margin, this.playerSprite);
+        
         this.info = new Info(this);
         this.debug = new Debug(this);
 
@@ -39,7 +46,7 @@ class QixScene extends Phaser.Scene {
         // this.cameras.main.startFollow(this.player, false);
     }
 
-    update(time, delta) {
+    update(time) {
         if (this.pauseControl.isPaused(time)) {
             return;
         }
