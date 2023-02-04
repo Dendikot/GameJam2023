@@ -17,6 +17,14 @@ export class ExtPoint {
     x() { return this.point.x; }
     y() { return this.point.y; }
 
+    setX(x){
+        this.x = x;
+    }
+
+    setY(y){
+        this.y = y;
+    }
+
     isLeftOf(p)
     {
         return this.x() < p.x();

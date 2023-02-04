@@ -19,7 +19,14 @@ export const config = {
     scene: [
         QixScene
     ],
-    banner: false
+    banner: false,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
 };
 
 export const customConfig = {
@@ -35,10 +42,9 @@ export const customConfig = {
     playerSpeed: 5,
     startCoverageTarget: 60,
     startLevel: 1,
-    startNumQixes: 1,
-    qixStartupTimesSeconds: [1, 200, 500],
-    qixTick: 8,
-    qixSpeed: 15,
     levelWinPauseMs: 4000,
-    targetsAmount: 4
+    targetsAmount: 4,
+    scabAmount: 3,
+    scabReachTolerance: 4,
+    scabSpeed: 200,
 };

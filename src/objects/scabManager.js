@@ -1,8 +1,6 @@
 import * as Phaser from 'phaser';
-import {customConfig, baseGameValues} from "./config";
-import { ExtPoint } from './ext-point';
 
-export class Worker {
+export class Scab {
     sprite;
     point;
     constructor(sprite) {
@@ -15,9 +13,8 @@ export class Worker {
      }
 }
 
-
-export class workersManager {
-    currentWorkers = [];
+export class scabManager{
+    currentScabs = [];
     scene;
     filledPolygon;
 
@@ -25,24 +22,34 @@ export class workersManager {
         this.scene = scene;
     }
 
-    spawnWorkers(levelIndex = 0){
+    spawnScabs(levelIndex = 0){
         for (let index = 0; index < customConfig.targetsAmount; index++) {
-            this.currentWorkers.push(this.createWorker(this.randomPos()));
+            this.currentTargets.push(this.createScab(this.randomPos()));
         }
     }
 
-    createWorker(position){
-        const workerSprite = this.scene.add.sprite(position.x, position.y, 'worker');
-        const target = new Worker(workerSprite);
+    createScab(position){
+        const scabSprite = this.scene.add.sprite(position.x, position.y, 'scab');
+        const target = new Scab(scabSprite);
         return target;
+        
     }
 
     randomPos(){
         return new Phaser.Math.Vector2(Phaser.Math.Between(customConfig.margin * 2, baseGameValues.gameWidth - customConfig.margin * 2),Phaser.Math.Between(0, customConfig.frameHeight));
     }
 
+    update(){
 
-    getWorkers(){
-        return this.currentWorkers;
     }
+
+    moveScab(scab){
+
+    }
+
+
+    getScabs(){
+        return this.currentScabs;
+    }
+
 }

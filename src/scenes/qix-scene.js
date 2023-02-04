@@ -36,9 +36,11 @@ class QixScene extends Phaser.Scene {
         this.load.image('player', player);
         this.load.image('worker', worker);
         this.load.image('scab', scab);
+        
     }
 
     create() {
+        //this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.cursors = this.input.keyboard.createCursorKeys();
         this.workersManager = new workersManager(this);
         this.grid = new Grid(this, this.workersManager);
@@ -50,8 +52,8 @@ class QixScene extends Phaser.Scene {
 
         this.pauseControl = new PauseControl();
         
-        this.workersManager.spawnTargets();
-
+        this.workersManager.spawnWorkers();
+        console.log(this.physics);
         // this.player = this.add.sprite(100, 100, 'player');
         // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         // this.cameras.main.startFollow(this.player, false);
