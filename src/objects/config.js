@@ -10,7 +10,7 @@ margin : 10
 };
 
 export const config = {
-    type: Phaser.AUTO,
+    type: Phaser.CANVAS,
     parent: 'content',
     width: baseGameValues.gameWidth,
     height: baseGameValues.gameHeight,

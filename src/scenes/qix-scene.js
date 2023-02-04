@@ -51,9 +51,13 @@ class QixScene extends Phaser.Scene {
         this.debug = new Debug(this);
 
         this.pauseControl = new PauseControl();
+        console.log(this.physics);
+        
+
+        this.test = this.physics.add.image(100,300, 'scab');
+        
         
         this.workersManager.spawnWorkers();
-        console.log(this.physics);
         // this.player = this.add.sprite(100, 100, 'player');
         // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         // this.cameras.main.startFollow(this.player, false);
