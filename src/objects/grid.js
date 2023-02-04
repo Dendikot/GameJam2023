@@ -15,11 +15,12 @@ import {AllPoints} from "./all-points";
 export class Grid {
     static FRAME_HEIGHT_PERCENT = .7;
 
-    constructor(scene) {
+    constructor(scene, targetManager) {
         this.scene = scene;
         this.filledPolygons = new FilledPolygons(scene);
         this.currentLines = new CurrentLines(scene);
         this.createFrame();
+        this.targetManager = targetManager;
 
         this.allPoints = new AllPoints(this.scene, this.frame.rectangle);
     }
@@ -96,7 +97,17 @@ export class Grid {
 
         // this.qix.debug.debugConsolePoints('points', this.currentLines.points);
 
+        this.checkForTargetsInside();
+
         this.currentLines.reset();
+    }
+
+    checkForTargetsInside(){
+        for (let index = 0; index < customConfig.targetsAmount; index++) {
+            if (this.filledPolygons.pointWithinPolygon(this.targetManager.currentTargets[index].point)) {
+                console.log("inside");
+            }
+        }
     }
 
     onExistingLine(player) {

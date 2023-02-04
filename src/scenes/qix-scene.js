@@ -33,7 +33,8 @@ class QixScene extends Phaser.Scene {
 
     create() {
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.grid = new Grid(this);
+        this.targetsManager = new targetsManager(this);
+        this.grid = new Grid(this, this.targetsManager);
         this.playerSprite = this.add.sprite(0,50, 'player');
         this.playerSprite.setScale(0.2, 0.2);
         this.player = new Player(this, customConfig.margin, customConfig.margin, this.playerSprite);
@@ -42,7 +43,7 @@ class QixScene extends Phaser.Scene {
         this.debug = new Debug(this);
 
         this.pauseControl = new PauseControl();
-        this.targetsManager = new targetsManager(this);
+        
         this.targetsManager.spawnTargets();
 
         // this.player = this.add.sprite(100, 100, 'player');

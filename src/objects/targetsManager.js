@@ -1,10 +1,25 @@
 import * as Phaser from 'phaser';
 import {customConfig, baseGameValues} from "./config";
+import { ExtPoint } from './ext-point';
+
+export class Target {
+    sprite;
+    point;
+    constructor(sprite) {
+        this.sprite = sprite;
+        this.point = this.Point(this.sprite.x, this.sprite.y);
+    }
+
+    Point(x, y) {
+        return ExtPoint.createWithCoordinates(x, y);
+     }
+}
 
 
 export class targetsManager {
     currentTargets = [];
     scene;
+    filledPolygon;
 
     constructor(scene) {
         this.scene = scene;
@@ -18,7 +33,8 @@ export class targetsManager {
 
     createTarget(position){
         const playerSprite = this.scene.add.sprite(position.x, position.y, 'player');
-        return playerSprite;
+        const target = new Target(playerSprite);
+        return target;
     }
 
     randomPos(){
@@ -26,4 +42,7 @@ export class targetsManager {
     }
 
 
+    getTargets(){
+        return this.currentTargets;
+    }
 }
