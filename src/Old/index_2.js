@@ -2,7 +2,7 @@ import 'phaser'
 import './styles/main.scss'
 import spidy from './assets/spidy.png'
 
-import {ExtPoint} from "./objects/ext-point";
+import {ExtPoint} from "../objects/ext-point";
 //import spider from "../assets/spidy.png"
 
 var config = {

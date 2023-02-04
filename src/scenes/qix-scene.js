@@ -7,6 +7,7 @@ import {Info} from "../objects/info";
 import {Debug} from "../objects/debug";
 import {config, customConfig} from "../objects/config";
 import {Levels} from "../objects/levels";
+import { targetsManager } from '../objects/targetsManager';
 
 
 class QixScene extends Phaser.Scene {
@@ -18,6 +19,7 @@ class QixScene extends Phaser.Scene {
     debug;
     pauseControl;
     levels = new Levels(this);
+    targetsManager;
 
     constructor() {
         super({
@@ -40,6 +42,8 @@ class QixScene extends Phaser.Scene {
         this.debug = new Debug(this);
 
         this.pauseControl = new PauseControl();
+        this.targetsManager = new targetsManager(this);
+        this.targetsManager.spawnTargets();
 
         // this.player = this.add.sprite(100, 100, 'player');
         // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
