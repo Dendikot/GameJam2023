@@ -59,7 +59,7 @@ class QixScene extends Phaser.Scene {
         this.testPos.x = this.player.x();
         this.testPos.y = this.player.y();
 
-        this.physics.moveToObject(this.test, this.testPos, 200);
+        
         
         
         this.workersManager.spawnWorkers();
@@ -69,6 +69,9 @@ class QixScene extends Phaser.Scene {
     }
 
     update(time) {
+        
+        this.physics.moveTo(this.test, this.player.x(), this.player.y(), 200);
+
         const distance = Phaser.Math.Distance.BetweenPoints(this.testPos, this.test);
         if(distance < 4) {
             this.test.body.reset(this.testPos.x, this.testPos.y);
