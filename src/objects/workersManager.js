@@ -27,18 +27,18 @@ export class workersManager {
 
     spawnTargets(levelIndex = 0){
         for (let index = 0; index < customConfig.targetsAmount; index++) {
-            this.currentTargets.push(this.createTarget(this.randomPos()));
+            this.currentTargets.push(this.createWorker(this.randomPos()));
         }
     }
 
-    createTarget(position){
-        const playerSprite = this.scene.add.sprite(position.x, position.y, 'player');
-        const target = new Worker(playerSprite);
+    createWorker(position){
+        const workerSprite = this.scene.add.sprite(position.x, position.y, 'worker');
+        const target = new Worker(workerSprite);
         return target;
     }
 
     randomPos(){
-        return new Phaser.Math.Vector2(Phaser.Math.Between(0, baseGameValues.gameWidth),Phaser.Math.Between(0, baseGameValues.gameHeight));
+        return new Phaser.Math.Vector2(Phaser.Math.Between(customConfig.margin * 2, baseGameValues.gameWidth - customConfig.margin * 2),Phaser.Math.Between(0, customConfig.frameHeight));
     }
 
 
