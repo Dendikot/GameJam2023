@@ -11,7 +11,6 @@ import {FilledPolygons} from "./filled-polygons";
 import {ExtRectangle} from "./ext-rectangle";
 import {CurrentLines} from "./current-lines";
 import {AllPoints} from "./all-points";
-import {Sparkies} from "./sparkies";
 
 export class Grid {
     static FRAME_HEIGHT_PERCENT = .7;

@@ -6,13 +6,9 @@ import {Info} from "../objects/info";
 import {Debug} from "../objects/debug";
 import {config, customConfig} from "../objects/config";
 import {Levels} from "../objects/levels";
-import {Sparkies} from "../objects/sparkies";
-import {Qixes} from "../objects/qixes";
 
 class QixScene extends Phaser.Scene {
     player;
-    sparkies;
-    qixes;
     grid;
     info;
     cursors;
@@ -37,9 +33,6 @@ class QixScene extends Phaser.Scene {
         this.debug = new Debug(this);
 
         this.pauseControl = new PauseControl();
-        console.log("testttt");
-        //this.sparkies = new Sparkies(this);
-        this.qixes = new Qixes(this);
 
         // this.player = this.add.sprite(100, 100, 'player');
         // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
@@ -56,8 +49,6 @@ class QixScene extends Phaser.Scene {
         }
 
         this.player.move(this.cursors);
-        //this.sparkies.update();
-        this.qixes.update();
         this.grid.update(this.player);
         this.info.updateGameText();
 
@@ -72,6 +63,7 @@ class QixScene extends Phaser.Scene {
 
     checkForLoss() {
         //return this.sparkies.checkForCollisionWithPlayer() || this.qixes.checkForCollisionWithCurrentLines();
+        return false;
     }
 
     loseLife(time) {

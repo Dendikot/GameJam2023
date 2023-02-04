@@ -1,7 +1,6 @@
 import * as Phaser from 'phaser';
 
 import {customConfig} from "./config";
-import {Player} from "./player";
 import {Qix} from "./qix";
 
 export class Qixes {

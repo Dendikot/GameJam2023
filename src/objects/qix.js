@@ -1,15 +1,10 @@
 import * as Phaser from 'phaser';
 
-const Graphics = Phaser.GameObjects.Graphics;
 const Point = Phaser.Geom.Point;
 const Line = Phaser.Geom.Line;
-const Set = Phaser.Structs.Set;
 
 import {ExtPoint} from "./ext-point";
 import {customConfig} from "./config";
-import QixScene from "../scenes/qix-scene";
-import {Direction} from "./direction";
-import {ExtPolygon} from "./ext-polygon";
 import {GeomUtils} from "../utils/geom-utils";
 
 export class Qix {
