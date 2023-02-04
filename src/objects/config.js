@@ -23,7 +23,7 @@ export const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 0 },
             debug: false
         }
     },
@@ -43,7 +43,7 @@ export const customConfig = {
     startCoverageTarget: 60,
     startLevel: 1,
     levelWinPauseMs: 4000,
-    targetsAmount: 4,
+    workersAmount: 4,
     scabAmount: 3,
     scabReachTolerance: 4,
     scabSpeed: 200,

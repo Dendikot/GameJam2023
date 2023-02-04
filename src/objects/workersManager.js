@@ -19,14 +19,13 @@ export class Worker {
 export class workersManager {
     currentWorkers = [];
     scene;
-    filledPolygon;
 
     constructor(scene) {
         this.scene = scene;
     }
 
     spawnWorkers(levelIndex = 0){
-        for (let index = 0; index < customConfig.targetsAmount; index++) {
+        for (let index = 0; index < customConfig.workersAmount; index++) {
             this.currentWorkers.push(this.createWorker(this.randomPos()));
         }
     }
