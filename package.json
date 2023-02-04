@@ -10,6 +10,8 @@
   "author": "Dan",
   "license": "ISC",
   "dependencies": {
+    "circular-dependency-plugin": "^5.2.2",
+    "jquery": "^3.6.3",
     "phaser": "^3.55.2"
   },
   "devDependencies": {
