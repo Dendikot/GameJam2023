@@ -2,7 +2,7 @@ import * as Phaser from 'phaser';
 import {customConfig, baseGameValues} from "./config";
 import { ExtPoint } from './ext-point';
 
-export class Target {
+export class Worker {
     sprite;
     point;
     constructor(sprite) {
@@ -16,7 +16,7 @@ export class Target {
 }
 
 
-export class targetsManager {
+export class workersManager {
     currentTargets = [];
     scene;
     filledPolygon;
@@ -33,7 +33,7 @@ export class targetsManager {
 
     createTarget(position){
         const playerSprite = this.scene.add.sprite(position.x, position.y, 'player');
-        const target = new Target(playerSprite);
+        const target = new Worker(playerSprite);
         return target;
     }
 

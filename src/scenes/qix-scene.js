@@ -1,13 +1,18 @@
 import * as Phaser from 'phaser';
-import spidy from "../assets/spidy.png"
 
+//assets
+import player from "../assets/player.png"
+import worker from "../assets/worker.png"
+import scab from "../assets/scab.png"
+
+//classes
 import {Player} from "../objects/player";
 import {Grid} from "../objects/grid";
 import {Info} from "../objects/info";
 import {Debug} from "../objects/debug";
 import {config, customConfig} from "../objects/config";
 import {Levels} from "../objects/levels";
-import { targetsManager } from '../objects/targetsManager';
+import { workersManager } from '../objects/workersManager';
 
 
 class QixScene extends Phaser.Scene {
@@ -19,7 +24,7 @@ class QixScene extends Phaser.Scene {
     debug;
     pauseControl;
     levels = new Levels(this);
-    targetsManager;
+    workersManager;
 
     constructor() {
         super({
@@ -28,15 +33,16 @@ class QixScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('player', spidy);
+        this.load.image('player', player);
+        this.load.image('worker', worker);
+        this.load.image('scab', scab);
     }
 
     create() {
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.targetsManager = new targetsManager(this);
-        this.grid = new Grid(this, this.targetsManager);
-        this.playerSprite = this.add.sprite(0,50, 'player');
-        this.playerSprite.setScale(0.2, 0.2);
+        this.workersManager = new workersManager(this);
+        this.grid = new Grid(this, this.workersManager);
+        this.playerSprite = this.add.sprite(5,50, 'player');
         this.player = new Player(this, customConfig.margin, customConfig.margin, this.playerSprite);
         
         this.info = new Info(this);
@@ -44,7 +50,7 @@ class QixScene extends Phaser.Scene {
 
         this.pauseControl = new PauseControl();
         
-        this.targetsManager.spawnTargets();
+        this.workersManager.spawnTargets();
 
         // this.player = this.add.sprite(100, 100, 'player');
         // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
