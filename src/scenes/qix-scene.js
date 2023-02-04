@@ -13,6 +13,7 @@ import {Debug} from "../objects/debug";
 import {config, customConfig} from "../objects/config";
 import {Levels} from "../objects/levels";
 import { workersManager } from '../objects/workersManager';
+import { scabManager } from '../objects/scabManager';
 
 
 class QixScene extends Phaser.Scene {
@@ -25,6 +26,7 @@ class QixScene extends Phaser.Scene {
     pauseControl;
     levels = new Levels(this);
     workersManager;
+    scabManager;
 
     constructor() {
         super({
@@ -36,13 +38,13 @@ class QixScene extends Phaser.Scene {
         this.load.image('player', player);
         this.load.image('worker', worker);
         this.load.image('scab', scab);
-        
     }
 
     create() {
         //this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.cursors = this.input.keyboard.createCursorKeys();
         this.workersManager = new workersManager(this);
+        this.scabManager = new scabManager(this, this.physics);
         this.grid = new Grid(this, this.workersManager);
         this.playerSprite = this.add.sprite(5,50, 'player');
         this.player = new Player(this, customConfig.margin, customConfig.margin, this.playerSprite);
@@ -54,28 +56,27 @@ class QixScene extends Phaser.Scene {
         console.log(this.physics);
         
 
-        this.test = this.physics.add.image(100,300, 'scab');
+        /*this.test = this.physics.add.image(100,300, 'scab');
         this.testPos = new Phaser.Math.Vector2();
         this.testPos.x = this.player.x();
-        this.testPos.y = this.player.y();
+        this.testPos.y = this.player.y();*/
 
-        
-        
-        
         this.workersManager.spawnWorkers();
+        this.scabManager.spawnScabs();
+
         // this.player = this.add.sprite(100, 100, 'player');
         // this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         // this.cameras.main.startFollow(this.player, false);
     }
 
     update(time) {
-        
-        this.physics.moveTo(this.test, this.player.x(), this.player.y(), 200);
 
-        const distance = Phaser.Math.Distance.BetweenPoints(this.testPos, this.test);
+        //this.physics.moveTo(this.test, this.player.x(), this.player.y(), 200);
+
+        /*const distance = Phaser.Math.Distance.BetweenPoints(this.testPos, this.test);
         if(distance < 4) {
             this.test.body.reset(this.testPos.x, this.testPos.y);
-        }
+        }*/
 
         if (this.pauseControl.isPaused(time)) {
             return;
@@ -88,6 +89,7 @@ class QixScene extends Phaser.Scene {
         this.player.move(this.cursors);
         this.grid.update(this.player);
         this.info.updateGameText();
+        this.scabManager.update();
 
         if (this.checkForWin()) {
             this.passLevel(time);
