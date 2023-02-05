@@ -112,8 +112,7 @@ export class Grid {
                 this.scabManager.targets.splice(index, 1);
                 customConfig.workersAmount--;
                 customConfig.collectedAmount++;
-                console.log(this.scabManager.targets);
-                console.log(this.workersManager.currentWorkers);
+                QixScene.Music[3].play();
             }
         }
     }

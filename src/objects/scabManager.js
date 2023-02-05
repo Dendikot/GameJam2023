@@ -45,7 +45,6 @@ export class scabManager{
     spawnScabs(levelIndex = 0){
         this.targets = this.workersManager.currentWorkers;
         this.targets.push(this.player);
-        console.log(this.targets);
         for (let index = 0; index < customConfig.scabAmount; index++) {
             this.currentScabs.push(this.createScab(this.randomPos()));
         }

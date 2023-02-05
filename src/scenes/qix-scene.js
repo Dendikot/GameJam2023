@@ -6,6 +6,9 @@ import worker from "../assets/worker.png"
 import scab from "../assets/scab.png"
 
 import mainMusic from "../assets/sounds/music.mp3"
+import deathMusic from "../assets/sounds/game-over.mp3"
+import winMusic from "../assets/sounds/game-won.mp3"
+import workerUnited from "../assets/sounds/worker-united.mp3"
 
 //classes
 import {Player} from "../objects/player";
@@ -29,6 +32,9 @@ class QixScene extends Phaser.Scene {
     levels = new Levels(this);
     workersManager;
     scabManager;
+    gameMusic = [];
+
+    static Music = null;
 
     constructor() {
         super({
@@ -40,16 +46,24 @@ class QixScene extends Phaser.Scene {
         this.load.image('player', player);
         this.load.image('worker', worker);
         this.load.image('scab', scab);
+
         this.load.audio('mainMusic', mainMusic);
+        this.load.audio('deathMusic', deathMusic);
+        this.load.audio('winMusic', winMusic);
+        this.load.audio('workerUnited', workerUnited);
     }
 
     create() {
         //this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        
-        let music = this.sound.add('mainMusic');
-        music.loop = true;
-        console.log(music);
-        music.play();
+        this.gameMusic.push(this.sound.add('mainMusic'));
+        this.gameMusic[0].loop = true;
+        this.gameMusic[0].play();
+
+        this.gameMusic.push(this.sound.add('deathMusic'));
+        this.gameMusic.push(this.sound.add('winMusic'));
+        this.gameMusic.push(this.sound.add('workerUnited'));
+
+        QixScene.Music = this.gameMusic;
         //play main music loop
         //play game over when you lose 
         //game won when oyu win
@@ -67,8 +81,6 @@ class QixScene extends Phaser.Scene {
         this.debug = new Debug(this);
 
         this.pauseControl = new PauseControl();
-        console.log(this.physics);
-        
 
         /*this.test = this.physics.add.image(100,300, 'scab');
         this.testPos = new Phaser.Math.Vector2();
@@ -105,6 +117,7 @@ class QixScene extends Phaser.Scene {
         this.info.updateGameText();
 
         if (this.checkForWin()) {
+            this.gameMusic[2].play();
             this.passLevel(time);
         }
 
@@ -119,6 +132,8 @@ class QixScene extends Phaser.Scene {
     }
 
     loseLife(time) {
+        this.gameMusic[1].play();
+
         this.pauseControl.pauseForWin(time);
         this.cameras.main.shake(300, .005);
         this.pauseControl.pauseForWin(time);
@@ -131,6 +146,8 @@ class QixScene extends Phaser.Scene {
             _this.scene.restart({});
             Grid.isOnTheBorder = true;
         }, customConfig.levelWinPauseMs / 2);
+
+
     }
 
     checkForWin() {
