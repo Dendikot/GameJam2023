@@ -43,11 +43,12 @@ class QixScene extends Phaser.Scene {
     create() {
         //this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.workersManager = new workersManager(this);
-        this.scabManager = new scabManager(this, this.physics);
-        this.grid = new Grid(this, this.workersManager);
         this.playerSprite = this.add.sprite(5,50, 'player');
         this.player = new Player(this, customConfig.margin, customConfig.margin, this.playerSprite);
+        this.workersManager = new workersManager(this);
+        this.scabManager = new scabManager(this, this.physics, this.workersManager, this.player);
+        this.grid = new Grid(this, this.workersManager);
+        
         
         this.info = new Info(this);
         this.debug = new Debug(this);

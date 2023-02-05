@@ -11,8 +11,7 @@ export class Scab {
         this.sprite = sprite;
         this.point = this.Point(this.sprite.x, this.sprite.y);
         this.target = target;
-        //this.targetPos = this.target.position;
-        this.targetPos = this.target;
+        this.targetPos = new Phaser.Math.Vector2(this.target.x, this.target.y);
     }
 
     Point(x, y) {
@@ -30,16 +29,22 @@ export class Scab {
 
 export class scabManager{
     currentScabs = [];
-    targets = [new Phaser.Math.Vector2(123,154), new Phaser.Math.Vector2(230,180),new Phaser.Math.Vector2(98,254), new Phaser.Math.Vector2(278,368)];
+    workersManager;
+    targets = [];
     scene;
     physics;
 
-    constructor(scene, physics) {
+    constructor(scene, physics, workersManager, player) {
         this.scene = scene;
         this.physics = physics;
+        this.workersManager = workersManager;
+        this.player = player;
     }
 
     spawnScabs(levelIndex = 0){
+        this.targets = this.workersManager.currentWorkers;
+        this.targets.push(this.player);
+        console.log(this.targets);
         for (let index = 0; index < customConfig.scabAmount; index++) {
             this.currentScabs.push(this.createScab(this.randomPos()));
         }
@@ -48,7 +53,6 @@ export class scabManager{
     createScab(position){
         const scabSprite = this.physics.add.sprite(position.x, position.y, 'scab');
         const scab = new Scab(scabSprite, this.randomTarg());
-        console.log(scab.target);
         this.physics.moveTo(scab.sprite, scab.target.x, scab.target.y, customConfig.scabSpeed);
         return scab;
         
@@ -68,23 +72,22 @@ export class scabManager{
 
             if(currentScab.target !== currentScab.targetPos){
                 // change to target.position
-                currentScab.targetPos = currentScab.target;
-                this.physics.moveTo(currentScab.sprite, currentScab.targetPos.x, currentScab.targetPos.y);
+                currentScab.targetPos = new Phaser.Math.Vector2(currentScab.target.x, currentScab.target.y);
+                this.physics.moveTo(currentScab.sprite, currentScab.targetPos.x, currentScab.targetPos.y, customConfig.scabSpeed);
             }
             const dist = Phaser.Math.Distance.Between(currentScab.sprite.x, currentScab.sprite.y,
                 currentScab.targetPos.x, currentScab.targetPos.y);
             if(dist < 5){
                 const targ = this.getNewTarg();
-                console.log(targ);
                 this.physics.moveTo(currentScab.sprite, targ.x, targ.y, customConfig.scabSpeed);
                 currentScab.target = targ;
-                currentScab.targetPos = targ;
+                currentScab.targetPos = new Phaser.Math.Vector2(targ.x, targ.y);
             }
         }
     }
 
     getNewTarg(){
-        return this.targets[Phaser.Math.Between(0, customConfig.scabAmount)];
+        return this.targets[Phaser.Math.Between(0, 4)].sprite;
     }
 
     moveScab(scab){

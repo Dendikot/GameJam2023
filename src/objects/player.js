@@ -8,7 +8,7 @@ import {customConfig} from "./config";
 
 export class Player {
 
-    graphics;
+    sprite;
 
     previousPoint;
 
@@ -21,7 +21,7 @@ export class Player {
     constructor(scene, x, y, sprite) {
 
         this.speed = customConfig.playerSpeed;
-        this.graphics = sprite;
+        this.sprite = sprite;
         /*this.graphics.lineStyle(1, customConfig.playerColor);
         this.graphics.fillStyle(customConfig.playerColor);
         this.graphics.x = x - customConfig.playerRadius;
@@ -33,15 +33,15 @@ export class Player {
     }
 
     x() {
-        return this.graphics.x + customConfig.playerRadius;
+        return this.sprite.x + customConfig.playerRadius;
     }
 
     y() {
-        return this.graphics.y + customConfig.playerRadius;
+        return this.sprite.y + customConfig.playerRadius;
     }
 
     point() {
-        return ExtPoint.createWithCoordinates(this.graphics.x + customConfig.playerRadius, this.graphics.y + customConfig.playerRadius);
+        return ExtPoint.createWithCoordinates(this.sprite.x + customConfig.playerRadius, this.sprite.y + customConfig.playerRadius);
     }
 
     move(cursors) {
@@ -52,8 +52,8 @@ export class Player {
         this.previousPoint = this.point();
 
         const newPosition = this.getMove(cursors);
-        this.graphics.x = newPosition.x;
-        this.graphics.y = newPosition.y;
+        this.sprite.x = newPosition.x;
+        this.sprite.y = newPosition.y;
     }
 
     moving() {
@@ -68,8 +68,8 @@ export class Player {
     movingVertically() { return this.movingUp() || this.movingDown(); }
 
     getMove(cursors) {
-        let x = this.graphics.x;
-        let y = this.graphics.y;
+        let x = this.sprite.x;
+        let y = this.sprite.y;
 
         if (cursors.left.isDown) {
             x -= this.speed;
