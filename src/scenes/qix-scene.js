@@ -77,7 +77,7 @@ class QixScene extends Phaser.Scene {
         this.grid = new Grid(this, this.workersManager, this.scabManager);
         
         
-        this.info = new Info(this);
+        //this.info = new Info(this);
         this.debug = new Debug(this);
 
         this.pauseControl = new PauseControl();
@@ -114,7 +114,7 @@ class QixScene extends Phaser.Scene {
 
         this.player.move(this.cursors);
         this.grid.update(this.player);
-        this.info.updateGameText();
+        //this.info.updateGameText();
 
         if (this.checkForWin()) {
             this.gameMusic[2].play();
