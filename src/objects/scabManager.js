@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import { customConfig, baseGameValues } from './config';
 import { ExtPoint } from './ext-point';
+import { Grid } from './grid';
 
 export class Scab {
     sprite;
@@ -67,6 +68,7 @@ export class scabManager{
     }
 
     update(){
+        console.log(Grid.isOnTheBorder);
         for (let index = 0; index < customConfig.scabAmount; index++) {
             const currentScab = this.currentScabs[index];
 
@@ -78,12 +80,17 @@ export class scabManager{
             const dist = Phaser.Math.Distance.Between(currentScab.sprite.x, currentScab.sprite.y,
                 currentScab.targetPos.x, currentScab.targetPos.y);
             if(dist < 5){
+                if(this.player.sprite === currentScab.target && !Grid.isOnTheBorder) {
+                    return true;
+                }
+
                 const targ = this.getNewTarg();
                 this.physics.moveTo(currentScab.sprite, targ.x, targ.y, customConfig.scabSpeed);
                 currentScab.target = targ;
                 currentScab.targetPos = new Phaser.Math.Vector2(targ.x, targ.y);
             }
         }
+        return false;
     }
 
     getNewTarg(){

@@ -14,6 +14,7 @@ import {AllPoints} from "./all-points";
 
 export class Grid {
     static FRAME_HEIGHT_PERCENT = .7;
+    static isOnTheBorder = true;
 
     constructor(scene, workersManager) {
         this.scene = scene;
@@ -111,7 +112,8 @@ export class Grid {
     }
 
     onExistingLine(player) {
-        return this.frame.pointOnOutline(player.point().point) || this.filledPolygons.pointOnLine(player.point());
+        Grid.isOnTheBorder = this.frame.pointOnOutline(player.point().point) || this.filledPolygons.pointOnLine(player.point());
+        return Grid.isOnTheBorder;
     }
 
     firstPointAndLastPointSame(player) {

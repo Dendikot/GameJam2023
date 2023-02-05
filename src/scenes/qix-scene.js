@@ -90,14 +90,13 @@ class QixScene extends Phaser.Scene {
         this.player.move(this.cursors);
         this.grid.update(this.player);
         this.info.updateGameText();
-        this.scabManager.update();
 
         if (this.checkForWin()) {
             this.passLevel(time);
         }
 
-        if (this.checkForLoss()) {
-            this.loseLife(time);
+        if (this.scabManager.update()) {
+            this.loseLife(0.5);
         }
     }
 
@@ -117,6 +116,7 @@ class QixScene extends Phaser.Scene {
         setTimeout(function () {
             winText.destroy();
             _this.scene.restart({});
+            Grid.isOnTheBorder = true;
         }, customConfig.levelWinPauseMs / 2);
     }
 
