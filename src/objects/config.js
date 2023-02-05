@@ -14,6 +14,7 @@ export const config = {
     parent: 'content',
     width: baseGameValues.gameWidth,
     height: baseGameValues.gameHeight,
+    autoCenter: true,
     resolution: 1,
     backgroundColor: "#555",
     scene: [
