@@ -39,14 +39,14 @@ export const customConfig = {
     fillColor: 0xCCAAFF,
     playerRadius: 5,
     playerColor: 0xAA88EE,
-    playerSpeed: 5,
+    playerSpeed: 3,
     startCoverageTarget: 60,
     startLevel: 1,
     levelWinPauseMs: 4000,
     workersAmount: 20,
-    scabAmount: 3,
-    scabReachTolerance: 4,
-    scabSpeed: 200,
+    scabAmount: 5,
+    scabReachTolerance: 6,
+    scabSpeed: 250,
     winAmount: 15,
     collectedAmount: 0
 };

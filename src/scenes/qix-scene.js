@@ -142,7 +142,7 @@ class QixScene extends Phaser.Scene {
         this.cameras.main.shake(300, .005);
         this.pauseControl.pauseForWin(time);
         this.cameras.main.shake(300, .005);
-        let winText = this.createWinText(`Ouch!!!.`, "#333333");
+        let winText = this.createWinText(`THOSE BASTERDS! NEVER GIVE UP!`, "#3CC1DB");
 
         const _this = this;
         setTimeout(function () {
