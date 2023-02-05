@@ -43,10 +43,10 @@ export const customConfig = {
     startCoverageTarget: 60,
     startLevel: 1,
     levelWinPauseMs: 4000,
-    workersAmount: 4,
+    workersAmount: 20,
     scabAmount: 3,
     scabReachTolerance: 4,
     scabSpeed: 200,
-    winAmount: 3,
+    winAmount: 15,
     collectedAmount: 0
 };
