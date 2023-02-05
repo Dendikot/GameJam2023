@@ -5,6 +5,8 @@ import player from "../assets/player.png"
 import worker from "../assets/worker.png"
 import scab from "../assets/scab.png"
 
+import mainMusic from "../assets/sounds/music.mp3"
+
 //classes
 import {Player} from "../objects/player";
 import {Grid} from "../objects/grid";
@@ -38,10 +40,21 @@ class QixScene extends Phaser.Scene {
         this.load.image('player', player);
         this.load.image('worker', worker);
         this.load.image('scab', scab);
+        this.load.audio('mainMusic', mainMusic);
     }
 
     create() {
         //this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        
+        let music = this.sound.add('mainMusic');
+        music.loop = true;
+        console.log(music);
+        music.play();
+        //play main music loop
+        //play game over when you lose 
+        //game won when oyu win
+        //free a worker sound
+
         this.cursors = this.input.keyboard.createCursorKeys();
         this.playerSprite = this.add.sprite(5,50, 'player');
         this.player = new Player(this, customConfig.margin, customConfig.margin, this.playerSprite);

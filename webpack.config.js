@@ -43,7 +43,7 @@ module.exports = {
                 },
             },
             {
-               // keep this alphabetical
+				// keep this alphabetical
 				test: /\.(csv|glb|glsl|jpg|jpeg|m4a|ogg|png|webp|xml)$/,
 				use:  [{
 					loader: "file-loader",
@@ -52,7 +52,7 @@ module.exports = {
 						context: path.resolve(__dirname, "src"),
 					}
 				}],
-            },
+			},
             {
                 test: /\.(mp3|wav|ogg)$/,
                 use: 'file-loader?name=videos/[name].[ext]',
