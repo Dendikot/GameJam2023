@@ -4,11 +4,13 @@ import * as Phaser from 'phaser';
 import player from "../assets/player.png"
 import worker from "../assets/worker.png"
 import scab from "../assets/scab.png"
+import workerUnited from '../assets/worker-united.png';
 
 import mainMusic from "../assets/sounds/music.mp3"
 import deathMusic from "../assets/sounds/game-over.mp3"
 import winMusic from "../assets/sounds/game-won.mp3"
-import workerUnited from "../assets/sounds/worker-united.mp3"
+import workerUnitedMusic from "../assets/sounds/worker-united.mp3"
+
 
 //classes
 import {Player} from "../objects/player";
@@ -19,7 +21,6 @@ import {config, customConfig} from "../objects/config";
 import {Levels} from "../objects/levels";
 import { workersManager } from '../objects/workersManager';
 import { scabManager } from '../objects/scabManager';
-
 
 class QixScene extends Phaser.Scene {
     player;
@@ -46,11 +47,12 @@ class QixScene extends Phaser.Scene {
         this.load.image('player', player);
         this.load.image('worker', worker);
         this.load.image('scab', scab);
+        this.load.image('workerUnited', workerUnited)
 
         this.load.audio('mainMusic', mainMusic);
         this.load.audio('deathMusic', deathMusic);
         this.load.audio('winMusic', winMusic);
-        this.load.audio('workerUnited', workerUnited);
+        this.load.audio('workerUnited', workerUnitedMusic);
     }
 
     create() {

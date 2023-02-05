@@ -13,6 +13,10 @@ export class Worker {
     Point(x, y) {
         return ExtPoint.createWithCoordinates(x, y);
      }
+
+     flipToCommie(){
+        this.sprite.setTexture('workerUnited');
+     }
 }
 
 

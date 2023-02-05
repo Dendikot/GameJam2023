@@ -108,7 +108,7 @@ export class Grid {
         for (let index = 0; index < customConfig.workersAmount; index++) {
             if (this.filledPolygons.pointWithinPolygon(this.workersManager.currentWorkers[index].point) 
                 && this.scabManager.targets[index] !== this.scabManager.targets[customConfig.workersAmount]) {
-                
+                this.workersManager.currentWorkers[index].flipToCommie();
                 this.scabManager.targets.splice(index, 1);
                 customConfig.workersAmount--;
                 customConfig.collectedAmount++;
