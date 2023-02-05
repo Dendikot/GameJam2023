@@ -133,6 +133,8 @@ class QixScene extends Phaser.Scene {
 
     loseLife(time) {
         this.gameMusic[1].play();
+        customConfig.collectedAmount = 0;
+        customConfig.workersAmount = 20;
 
         this.pauseControl.pauseForWin(time);
         this.cameras.main.shake(300, .005);
@@ -146,8 +148,6 @@ class QixScene extends Phaser.Scene {
             _this.scene.restart({});
             Grid.isOnTheBorder = true;
         }, customConfig.levelWinPauseMs / 2);
-
-
     }
 
     checkForWin() {
@@ -164,6 +164,8 @@ class QixScene extends Phaser.Scene {
         this.pauseControl.pauseForWin(time);
         this.cameras.main.shake(300, .005);
         let winText = this.createWinText(`Sweet!!\nLevel ${this.levels.currentLevel} passed.`, "#333333");
+        customConfig.collectedAmount = 0;
+        customConfig.workersAmount = 20;
 
         const _this = this;
         setTimeout(function () {
