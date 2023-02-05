@@ -121,7 +121,8 @@ class QixScene extends Phaser.Scene {
     }
 
     checkForWin() {
-        return (this.grid.filledPolygons.percentArea() >= this.levels.coverageTarget);
+        //return (this.grid.filledPolygons.percentArea() >= this.levels.coverageTarget);
+        return customConfig.collectedAmount >= customConfig.winAmount;
     }
 
     options = { fontFamily: 'Courier', fontSize: '30px', color: '#bb33bb', align: 'center',

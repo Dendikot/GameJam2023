@@ -47,4 +47,6 @@ export const customConfig = {
     scabAmount: 3,
     scabReachTolerance: 4,
     scabSpeed: 200,
+    winAmount: 3,
+    collectedAmount: 0
 };
