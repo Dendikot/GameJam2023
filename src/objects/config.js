@@ -2,8 +2,8 @@ import QixScene from "../scenes/qix-scene";
 
 export const baseGameValues = {
 
-gameWidth : 800,
-gameHeight : 500,
+gameWidth : 900,
+gameHeight : 675,
 infoHeight : 30,
 debugTextAreaHeight : 0,
 margin : 10
@@ -39,13 +39,13 @@ export const customConfig = {
     fillColor: 0xCCAAFF,
     playerRadius: 5,
     playerColor: 0xAA88EE,
-    playerSpeed: 5,
+    playerSpeed: 2,
     startCoverageTarget: 60,
     startLevel: 1,
     levelWinPauseMs: 4000,
     workersAmount: 20,
-    scabAmount: 3,
-    scabReachTolerance: 4,
+    scabAmount: 5,
+    scabReachTolerance: 6,
     scabSpeed: 200,
     winAmount: 15,
     collectedAmount: 0
