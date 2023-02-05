@@ -23,7 +23,6 @@ export class Player {
         this.speed = customConfig.playerSpeed;
         this.sprite = sprite;
         this.sprite.setDepth(2);
-        console.log(this.sprite);
         /*this.graphics.lineStyle(1, customConfig.playerColor);
         this.graphics.fillStyle(customConfig.playerColor);
         this.graphics.x = x - customConfig.playerRadius;

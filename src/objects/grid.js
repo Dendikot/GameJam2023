@@ -36,7 +36,7 @@ export class Grid {
             customConfig.margin,
             customConfig.margin,
             config.width - (2 * customConfig.margin),
-            customConfig.frameHeight));
+            customConfig.frameHeight + (2 * customConfig.margin)) );
 
         this.frameArea = this.frame.rectangle.height * this.frame.rectangle.width;
         this.frameGraphics.strokeRectShape(this.frame.rectangle);
@@ -135,14 +135,13 @@ export class Grid {
             (newPosition.x < this.frame.rectangle.x) ||
             (newPosition.x > this.frame.rectangle.x + this.frame.rectangle.width) ||
             (newPosition.y < this.frame.rectangle.y) ||
-            (newPosition.y > this.frame.rectangle.y + this.frame.rectangle.height);
+            (newPosition.y > this.frame.rectangle.y + this.frame.rectangle.height + customConfig.margin);
 
         const withinFilledPolygon = this.filledPolygons.pointWithinPolygon(new ExtPoint(newPosition));
 
         const hittingCurrentLines = this.currentLines.lines.some((line) => {
             return Phaser.Geom.Intersects.PointToLineSegment(newPosition, line);
         });
-
         return outOfBounds || withinFilledPolygon || hittingCurrentLines;
     }
 }
