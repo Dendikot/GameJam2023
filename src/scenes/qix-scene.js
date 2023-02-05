@@ -47,7 +47,7 @@ class QixScene extends Phaser.Scene {
         this.player = new Player(this, customConfig.margin, customConfig.margin, this.playerSprite);
         this.workersManager = new workersManager(this);
         this.scabManager = new scabManager(this, this.physics, this.workersManager, this.player);
-        this.grid = new Grid(this, this.workersManager);
+        this.grid = new Grid(this, this.workersManager, this.scabManager);
         
         
         this.info = new Info(this);

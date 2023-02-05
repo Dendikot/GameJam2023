@@ -16,12 +16,13 @@ export class Grid {
     static FRAME_HEIGHT_PERCENT = .7;
     static isOnTheBorder = true;
 
-    constructor(scene, workersManager) {
+    constructor(scene, workersManager, scabManager) {
         this.scene = scene;
         this.filledPolygons = new FilledPolygons(scene);
         this.currentLines = new CurrentLines(scene);
         this.createFrame();
         this.workersManager = workersManager;
+        this.scabManager = scabManager;
 
         this.allPoints = new AllPoints(this.scene, this.frame.rectangle);
     }
@@ -105,8 +106,13 @@ export class Grid {
 
     checkForWorkerssInside(){
         for (let index = 0; index < customConfig.workersAmount; index++) {
-            if (this.filledPolygons.pointWithinPolygon(this.workersManager.currentWorkers[index].point)) {
-                console.log("inside");
+            if (this.filledPolygons.pointWithinPolygon(this.workersManager.currentWorkers[index].point) 
+                && this.scabManager.targets[index] !== this.scabManager.targets[customConfig.workersAmount]) {
+                
+                this.scabManager.targets.splice(index, 1);
+                customConfig.workersAmount--;
+                console.log(this.scabManager.targets);
+                console.log(this.workersManager.currentWorkers);
             }
         }
     }

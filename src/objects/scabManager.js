@@ -68,7 +68,6 @@ export class scabManager{
     }
 
     update(){
-        console.log(Grid.isOnTheBorder);
         for (let index = 0; index < customConfig.scabAmount; index++) {
             const currentScab = this.currentScabs[index];
 
@@ -94,7 +93,7 @@ export class scabManager{
     }
 
     getNewTarg(){
-        return this.targets[Phaser.Math.Between(0, 4)].sprite;
+        return this.targets[Phaser.Math.Between(0, customConfig.workersAmount)].sprite;
     }
 
     moveScab(scab){
