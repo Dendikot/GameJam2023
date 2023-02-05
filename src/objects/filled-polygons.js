@@ -8,7 +8,8 @@ import {ExtRectangle} from "./ext-rectangle";
 
 export class FilledPolygons {
     static LINE_COLOR = 0x0000;
-    static FILL_COLOR = 0xCCAAFF;
+    //static FILL_COLOR = 0xCCAAFF;
+    static FILL_COLOR = 0xa83250;
 
     scene;
     polygons = [];
