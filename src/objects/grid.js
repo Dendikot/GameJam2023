@@ -135,7 +135,7 @@ export class Grid {
             (newPosition.x < this.frame.rectangle.x) ||
             (newPosition.x > this.frame.rectangle.x + this.frame.rectangle.width) ||
             (newPosition.y < this.frame.rectangle.y) ||
-            (newPosition.y > this.frame.rectangle.y + this.frame.rectangle.height + customConfig.margin);
+            (newPosition.y > this.frame.rectangle.y + this.frame.rectangle.height);
 
         const withinFilledPolygon = this.filledPolygons.pointWithinPolygon(new ExtPoint(newPosition));
 
